@@ -21,38 +21,17 @@ vector<CpuInfo> get_cpu_info() {
         string line;
         string cpuName;
         int value;
-        char compare[4] = "cpu";
-        
-        stringstream cpuStream;
-        
+      
         for (int i = 0; i < 9; i++) {
+            
+            stringstream cpuStream;
+
             //includes top cpu line
             getline(cpu, line);
-            /*
-            get first word
-            if (first word deosn't contain cpu)
-                break
-            create cpu
-            go to next word
-            get int, save int
-            */
+
             cpuStream << line;
             cpuStream >> cpuName;
-            //char *cpuWord = new char [4];
-            //strcpy(cpuWord, cpuName.c_str());
-
-/*
-            if (cpuWord != compare) {
-                break;
-            }
-*/
-
-            //TODO:
-            //many values come back incorrectly as 0,
-            //find why this is happening and all tests
-            //should pass. We may need to use pointers.
-            //We should finish this file before continuing
-            //to processes.
+  
 
             struct CpuInfo cpuInfo;
 
@@ -89,7 +68,6 @@ vector<CpuInfo> get_cpu_info() {
             allCpus.push_back(cpuInfo);
 
         }
-
 
         return allCpus;
     }

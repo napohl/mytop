@@ -25,7 +25,7 @@ SystemInfo get_system_info() {
     within all the processes.
     */
     
-
+    /*
     struct SystemInfo sysInfo;
 
     sysInfo.num_processes = 0;
@@ -35,15 +35,17 @@ SystemInfo get_system_info() {
     sysInfo.num_running = 0;
     sysInfo.uptime = 0;
 
-    LoadAverageInfo loadAverage = get_load_average_info();
+    LoadAverageInfo loadAverage = get_load_average();
     MemoryInfo memInfo = get_memory_info();
     vector<CpuInfo> cpuInfo = get_cpu_info();
-    vector<ProcessInfo> processInfo = get_process_info();
+    vector<ProcessInfo> processInfo = get_all_processes("proc");
 
     sysInfo.load_average = loadAverage;
     sysInfo.memory_info = memInfo;
     sysInfo.cpus = cpuInfo;
     sysInfo.processes = processInfo;
+    */
+    return SystemInfo();
 
     
 }
