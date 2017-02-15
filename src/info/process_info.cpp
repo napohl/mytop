@@ -44,9 +44,9 @@ ProcessInfo get_process(int pid, const char* basedir) {
     strcpy(statString, basedir);
     strcat(statString, "/");
     strcat(statString, pidString);
-    strcat(statString, "/cpuset");
+    strcat(statString, "/stat");
 
-    ifstream memStat(statString);
+    ifstream memStat(memString);
     ifstream cpuSet(cpuSetString);
     ifstream stat(statString);
     
@@ -58,9 +58,9 @@ ProcessInfo get_process(int pid, const char* basedir) {
     else {
 
         //turn on to check for segfault
-        //return ProcessInfo();
+        return ProcessInfo();
 
-        stringstream processStream;
+        stringstream memStatStream;
         string line;
         int value;
         struct ProcessInfo process;
@@ -68,27 +68,27 @@ ProcessInfo get_process(int pid, const char* basedir) {
         //Start with statm file
         //this file is one line
         getline(memStat, line);
-        processStream << line;
+        memStatStream << line;
 
-        processStream >> value;
+        memStatStream >> value;
         process.size = value;
 
-        processStream >> value;
+        memStatStream >> value;
         process.resident = value;
 
-        processStream >> value;
+        memStatStream >> value;
         process.share = value;
 
-        processStream >> value;
+        memStatStream >> value;
         process.trs = value;
 
-        processStream >> value;
+        memStatStream >> value;
         process.lrs = value;
 
-        processStream >> value;
+        memStatStream >> value;
         process.drs = value;
 
-        processStream >> value;
+        memStatStream >> value;
         process.dt = value;
         
         //end statm
@@ -100,13 +100,13 @@ ProcessInfo get_process(int pid, const char* basedir) {
 
         //is a string
         //is the whole file pid/cpuset
-        getline(cpuSet, line);
-        process.command_line = line;
+        getline(cpuSet, process.command_line);
+        //process.command_line = line;
 
 
         //The rest of the values are in stat
         //this file is one line
-        
+        stringstream processStream;
         getline(stat, line);
         processStream << line;
 
