@@ -15,7 +15,6 @@ MemoryInfo get_memory_info() {
      */
     ifstream memory(PROC_ROOT "/meminfo");
     if (memory.fail()) {
-        cout << "Couldn't find the file\n";
         return MemoryInfo();
     }
     else {

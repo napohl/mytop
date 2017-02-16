@@ -12,7 +12,6 @@ vector<CpuInfo> get_cpu_info() {
 
     ifstream cpu(PROC_ROOT "/stat");
     if (cpu.fail()) {
-        cout << "Couldn't find the file\n";
         return vector<CpuInfo>();    
     }
     else {

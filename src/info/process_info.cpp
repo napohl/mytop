@@ -27,7 +27,6 @@ vector<int> getAllPids(const char* basedir) {
     dir = opendir(basedir);
 
     if (!dir) {
-        //cout << "Couldn't open directory\n";
         return pids;
     }
 
@@ -78,16 +77,10 @@ ProcessInfo get_process(int pid, const char* basedir) {
     ifstream stat(statString);
     
     if (memStat.fail() || commandLine.fail() || stat.fail()) {
-        //cout << "Couldn't find the file\n";
         return ProcessInfo();
     }
     
     else {
-
-        //turn on to check for segfault
-        //return ProcessInfo();
-
-        //cout << "Just started the process\n\n\n";
 
         stringstream memStatStream;
         string line;
@@ -111,10 +104,7 @@ ProcessInfo get_process(int pid, const char* basedir) {
 
         //comes from input
         process.pid = pid;
-
-        //cout << "Finished statm, size = " << process.size << "\n\n\n";
         
-
         //is a string
         //is the whole file pid/cpuset
         getline(commandLine, process.command_line);
@@ -193,7 +183,6 @@ ProcessInfo get_process(int pid, const char* basedir) {
         strcat(taskString, pidString);
         strcat(taskString, "/task");
 
-        //cout << "starting threads, task is in this state: " << process.state << "\n\n\n";
         process.threads = get_all_processes(taskString);
 
         //all thread group ids are equal to the process pid
@@ -207,16 +196,12 @@ ProcessInfo get_process(int pid, const char* basedir) {
         if (process.command_line == "") {
             string str(process.comm);
 
-            //cout << "command_line before: " << str << endl;
-
             size_t i = 0;
             while (i < str.size()) {
                 if (str[i] == '(' || str[i] == ')') str.erase(i,1);
                 else ++i;
             }
-
-            //cout << "command line after: " << str << endl;
-    
+   
             process.command_line = str;
         }
         else {
@@ -254,7 +239,6 @@ vector<ProcessInfo> get_all_processes(const char* basedir) {
     ProcessInfo process;
     
     for (int i = 0; i < pids.size(); i++) {
-        //cout << "calling get process\n\n\n";
         process = get_process(pids[i], basedir);
         allProcesses.push_back(process);
     }

@@ -15,7 +15,6 @@ LoadAverageInfo get_load_average() {
      */
     ifstream load(PROC_ROOT "/loadavg");
     if (load.fail()) {
-        cout << "Couldn't find the file\n";
         return LoadAverageInfo();
     }
     else {
