@@ -13,7 +13,7 @@ MemoryInfo get_memory_info() {
      * we can hardcode how we progress through the file to grab 
      * all necessary values.
      */
-    ifstream memory("proc/meminfo");
+    ifstream memory(PROC_ROOT "/meminfo");
     if (memory.fail()) {
         cout << "Couldn't find the file\n";
         return MemoryInfo();

@@ -13,7 +13,7 @@ LoadAverageInfo get_load_average() {
      * we can hardcode how we progress through the file to grab 
      * all necessary values.
      */
-    ifstream load("proc/loadavg");
+    ifstream load(PROC_ROOT "/loadavg");
     if (load.fail()) {
         cout << "Couldn't find the file\n";
         return LoadAverageInfo();
