@@ -14,12 +14,9 @@ double get_uptime() {
     // uptime is found under the file uptime
     ifstream uptime(PROC_ROOT "/uptime"); 
     double returnVal = 0.0;
-    if (uptime.fail()) {
-        cout << "Couldn't find file: /uptime" << endl;
-    }
-    else {
-        uptime >> returnVal;
-    }   
+    
+    uptime >> returnVal;
+       
     uptime.close();
     return returnVal;
 }
