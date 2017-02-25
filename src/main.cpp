@@ -15,7 +15,7 @@
 
 using namespace std;
 
-const int TOTAL_PID_SHOWN = 10;
+const int TOTAL_PID_SHOWN = 15;
 
 const struct option options[] = 
 {
