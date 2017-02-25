@@ -186,7 +186,7 @@ ProcessInfo get_process(int pid, const char* basedir) {
         process.threads = get_all_processes(taskString);
 
         //all thread group ids are equal to the process pid
-        for (int i = 0; i < process.threads.size(); i++) {
+        for (size_t i = 0; i < process.threads.size(); i++) {
             process.threads[i].tgid = process.pid; 
         }
 
@@ -238,7 +238,7 @@ vector<ProcessInfo> get_all_processes(const char* basedir) {
     vector<ProcessInfo> allProcesses;
     ProcessInfo process;
     
-    for (int i = 0; i < pids.size(); i++) {
+    for (size_t i = 0; i < pids.size(); i++) {
         process = get_process(pids[i], basedir);
         allProcesses.push_back(process);
     }

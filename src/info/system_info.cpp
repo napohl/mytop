@@ -32,14 +32,14 @@ SystemInfo get_system_info() {
     sysInfo.num_running = 0;
     sysInfo.uptime = 0;
 
-    for (int i = 0; i < processes.size(); i++) {
+    for (size_t i = 0; i < processes.size(); i++) {
         if (processes[i].state == 'R') {
             sysInfo.num_running++;
         }
         if (processes[i].is_kernel_thread()) {
             sysInfo.num_kernel_threads++;
         }
-        for (int j = 0; j < processes[i].threads.size(); j++) {
+        for (size_t j = 0; j < processes[i].threads.size(); j++) {
             if (processes[i].threads[j].is_user_thread()) {
                 sysInfo.num_user_threads++;
             }
